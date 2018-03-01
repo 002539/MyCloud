@@ -12,6 +12,20 @@ def random_phone():
     random_phone = "182" + str(random_shuzi) + "769"
     return random_phone
 
+
+'''创建各个角色账号'''
+market_random_phone = random_phone()  # 客户经理账号
+market_lead_random_phone = random_phone()  # 销售主管账号
+agent_random_phone = random_phone()  # 代理商账号
+engineer_random_phone = random_phone()  # 工程师账号
+engineer_lead_random_phone = random_phone()  # 技术支持主管账号
+visit_random_phone = random_phone()  # 回访员账号
+risk_management_random_phone = random_phone()  # 风控账号
+ceo_random_phone = random_phone()  # CEO账号
+money_random_phone = random_phone()  # 财务账号
+supplier_random_phone = random_phone()  # 供应商账号
+
+
 # 接口请求函数requests_DEMO
 def requests_DEMO(DEMO_URL, content, headers):
     global result
@@ -30,17 +44,8 @@ class Mytest(unittest.TestCase):
     '''注册所有账号'''
     def test_a_register_market(self):
 
-        market_random_phone = random_phone()  # 客户经理账号
-        market_lead_random_phone = random_phone()  # 销售主管账号
-        agent_random_phone = random_phone()  # 代理商账号
-        engineer_random_phone = random_phone()  # 工程师账号
-        engineer_lead_random_phone = random_phone()  # 技术支持主管账号
-        visit_random_phone = random_phone()  # 回访员账号
-        risk_management_random_phone = random_phone()  # 风控账号
-        ceo_random_phone = random_phone()  # CEO账号
-        money_random_phone = random_phone()  # 财务账号
-        supplier_random_phone = random_phone()  # 供应商账号
 
+        '''将账号，type，名称放在fruits列表里面'''
         fruits = [[market_random_phone, market_lead_random_phone, agent_random_phone, engineer_random_phone,
                    engineer_lead_random_phone,visit_random_phone,risk_management_random_phone,ceo_random_phone,
                    money_random_phone,supplier_random_phone],
@@ -48,6 +53,7 @@ class Mytest(unittest.TestCase):
                   ["客户经理账号", "销售主管账号", "代理商账号", "工程师账号", "技术支持主管账号", "回访员账号", "风控账号",
                    "CEO账号","财务账号", "供应商账号"]]
 
+        '''循环创建各个角色的账号'''
         for num in range(len(fruits[1])):
             # 接口异常处理
             try:
@@ -62,7 +68,9 @@ class Mytest(unittest.TestCase):
                 self.assertEquals(result['status'], "1")
 
             except BaseException as e:
-                print("########注册客户经理失败########")
+                print("########注册失败########")
+                
+    
 
 
 
