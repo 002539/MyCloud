@@ -42,7 +42,7 @@ class Mytest(unittest.TestCase):
 
 
     '''注册所有账号'''
-    def test_a_register_market(self):
+    def test_a_register(self):
 
 
         '''将账号，type，名称放在fruits列表里面'''
@@ -53,7 +53,7 @@ class Mytest(unittest.TestCase):
                   ["客户经理账号", "销售主管账号", "代理商账号", "工程师账号", "技术支持主管账号", "回访员账号", "风控账号",
                    "CEO账号","财务账号", "供应商账号"]]
 
-        '''循环创建各个角色的账号'''
+        '''创建各个角色的账号'''
         for num in range(len(fruits[1])):
             # 接口异常处理
             try:
@@ -69,9 +69,54 @@ class Mytest(unittest.TestCase):
 
             except BaseException as e:
                 print("########注册失败########")
-                
-    
 
+     '''登录各个账号，并获取token和userid'''
+     # 客户经理登录
+     def test_b_login_market(self):
+         # 接口异常处理机制
+        try:
+            # 传的参数
+            content = {"phone":market_random_phone,# 客户经理账号
+                       "pwd":"123456",# 密码
+                       "confirm":"true"}
+
+            requests_DEMO(DEMO_URL=test_api.login_url, content=content, headers=headers)
+            # 断言判断是否成功
+            self.assertEquals(result['result'], "登录成功")
+
+            # 获取登录token和id
+            inp_strr = result
+            global market_token
+            global market_id
+            market_token = result['result']['AccessToken']
+            market_id = result['result']['id']
+
+        except BaseException as e:
+            print("########客户经理登录失败########")
+
+
+    # 客户主管登录
+    def test_c_login_market_lead(self):
+        # 接口异常处理机制
+        try:
+            # 传的参数
+            content = {"phone": market_lead_random_phone,  # 客户主管账号
+                       "pwd": "123456",  # 密码
+                       "confirm": "true"}
+
+            requests_DEMO(DEMO_URL=test_api.login_url, content=content, headers=headers)
+            # 断言判断是否成功
+            self.assertEquals(result['result'], "登录成功")
+
+            # 获取登录token和id
+            inp_strr = result
+            global market_lead_token
+            global market_lead_id
+            market_lead_token = result['result']['AccessToken']
+            market_lead_id = result['result']['id']
+
+        except BaseException as e:
+            print("########客户主管登录失败########")
 
 
 

@@ -18,11 +18,7 @@ def register():
 
 print(kefu_phone)
 
-print(kefu_phone)
 
-print(kefu_phone)
-print(kefu_phone)
-print(kefu_phone)
 
 
 
