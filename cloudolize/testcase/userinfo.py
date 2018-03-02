@@ -13,7 +13,7 @@ def random_phone():
     return random_phone
 
 
-'''创建各个角色账号'''
+'''创建各个角色账号，将所有账号在userinfo注册并登录获取其token和id值'''
 market_random_phone = random_phone()  # 客户经理账号
 market_lead_random_phone = random_phone()  # 销售主管账号
 agent_random_phone = random_phone()  # 代理商账号
@@ -38,8 +38,6 @@ class Mytest(unittest.TestCase):
     def setUp(self):
         print("矩阵风暴MOSS（V1.0）接口测试启动 ---")
         pass
-
-
 
     '''注册所有账号'''
     def test_a_register(self):
@@ -94,7 +92,6 @@ class Mytest(unittest.TestCase):
         except BaseException as e:
             print("########客户经理登录失败########")
 
-
     # 客户主管登录
     def test_c_login_market_lead(self):
         # 接口异常处理机制
@@ -118,9 +115,71 @@ class Mytest(unittest.TestCase):
         except BaseException as e:
             print("########客户主管登录失败########")
 
+    # 客户经理登录
+    def test_c_login_market(self):
+        # 接口异常处理机制
+        try:
+            # 传的参数
+            content = {"phone": market_random_phone,  # 客户经理账号
+                       "pwd": "123456",  # 密码
+                       "confirm": "true"}
 
+            requests_DEMO(DEMO_URL=test_api.login_url, content=content, headers=headers)
+            # 断言判断是否成功
+            self.assertEquals(result['result'], "登录成功")
 
+            # 获取登录token和id
+            global market_token
+            global market_id
+            market_token = result['result']['AccessToken']
+            market_id = result['result']['id']
 
+        except BaseException as e:
+            print("########客户经理登录失败########")
+
+    # 代理商登录
+    def test_c_login_agent(self):
+        # 接口异常处理机制
+        try:
+            # 传的参数
+            content = {"phone": agent_random_phone,  # 代理商账号
+                       "pwd": "123456",  # 密码
+                       "confirm": "true"}
+
+            requests_DEMO(DEMO_URL=test_api.login_url, content=content, headers=headers)
+            # 断言判断是否成功
+            self.assertEquals(result['result'], "登录成功")
+
+            # 获取登录token和id
+            global agent_token
+            global agent_id
+            agent_token = result['result']['AccessToken']
+            agent_id = result['result']['id']
+
+        except BaseException as e:
+            print("########代理商登录失败########")
+
+    # 工程师登录
+    def test_c_login_agent(self):
+        # 接口异常处理机制
+        try:
+            # 传的参数
+            content = {"phone": agent_random_phone,  # 工程师账号
+                       "pwd": "123456",  # 密码
+                       "confirm": "true"}
+
+            requests_DEMO(DEMO_URL=test_api.login_url, content=content, headers=headers)
+            # 断言判断是否成功
+            self.assertEquals(result['result'], "登录成功")
+
+            # 获取登录token和id
+            global agent_token
+            global agent_id
+            agent_token = result['result']['AccessToken']
+            agent_id = result['result']['id']
+
+        except BaseException as e:
+            print("########工程师登录失败########")
 
 
 if __name__ == "__main__":
