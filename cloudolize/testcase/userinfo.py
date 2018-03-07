@@ -93,7 +93,7 @@ class Mytest(unittest.TestCase):
             print("########客户经理登录失败########")
 
     # 客户主管登录
-    def test_c_login_market_lead(self):
+     def test_c_login_market_lead(self):
         # 接口异常处理机制
         try:
             # 传的参数
@@ -116,7 +116,7 @@ class Mytest(unittest.TestCase):
             print("########客户主管登录失败########")
 
     # 客户经理登录
-    def test_c_login_market(self):
+     def test_c_login_market(self):
         # 接口异常处理机制
         try:
             # 传的参数
@@ -138,7 +138,7 @@ class Mytest(unittest.TestCase):
             print("########客户经理登录失败########")
 
     # 代理商登录
-    def test_c_login_agent(self):
+     def test_c_login_agent(self):
         # 接口异常处理机制
         try:
             # 传的参数
@@ -160,7 +160,7 @@ class Mytest(unittest.TestCase):
             print("########代理商登录失败########")
 
     # 工程师登录
-    def test_c_login_agent(self):
+     def test_c_login_agent(self):
         # 接口异常处理机制
         try:
             # 传的参数
@@ -180,6 +180,9 @@ class Mytest(unittest.TestCase):
 
         except BaseException as e:
             print("########工程师登录失败########")
+
+     
+
 
 
 if __name__ == "__main__":
